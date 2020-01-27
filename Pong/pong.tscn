@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Pong/pong.gd" type="Script" id=1]
+[ext_resource path="res://Pong/ball.png" type="Texture" id=2]
+[ext_resource path="res://Pong/left_pallete.png" type="Texture" id=3]
+[ext_resource path="res://Pong/right_pallete.png" type="Texture" id=4]
+[ext_resource path="res://Pong/separator.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ARCADECLASSIC.TTF" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 6 )
+
+[node name="game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="BKG" type="Panel" parent="."]
+margin_right = 512.0
+margin_bottom = 300.0
+
+[node name="ball" type="Sprite" parent="."]
+position = Vector2( 256, 150 )
+texture = ExtResource( 2 )
+
+[node name="left" type="Sprite" parent="."]
+position = Vector2( 48.4353, 150.317 )
+texture = ExtResource( 3 )
+
+[node name="right" type="Sprite" parent="."]
+position = Vector2( 459.3, 151.987 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 8, 350 )
+
+[node name="separator" type="Sprite" parent="."]
+position = Vector2( 256, 150 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2, 300 )
+
+[node name="Start" type="Position2D" parent="."]
+position = Vector2( 256, 150 )
+
+[node name="localScore" type="RichTextLabel" parent="."]
+margin_left = 6.28505
+margin_top = 2.79335
+margin_right = 160.285
+margin_bottom = 36.7934
+custom_fonts/normal_font = SubResource( 1 )
+text = "0"

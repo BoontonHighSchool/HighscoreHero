@@ -1,55 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://AsteroidsArcade.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PongArcade.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemy-A-NW.tres" type="Animation" id=6]
-[ext_resource path="res://Enemy-A-Short.tres" type="Animation" id=7]
-[ext_resource path="res://Enemy-P-NW.tres" type="Animation" id=8]
-[ext_resource path="res://Enemy-P-Short.tres" type="Animation" id=9]
+[ext_resource path="res://Enemy-A-Short.tres" type="Animation" id=6]
+[ext_resource path="res://Enemy-A-NW.tres" type="Animation" id=7]
+[ext_resource path="res://Enemy-P-Short.tres" type="Animation" id=8]
+[ext_resource path="res://Enemy-Pong.tres" type="Animation" id=9]
 [ext_resource path="res://BKG.tscn" type="PackedScene" id=10]
-
-[sub_resource type="Animation" id=2]
-resource_name = "Enemy-W"
-length = 15.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 6.5, 7.2, 14.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 840.513, 500 ), Vector2( 175.644, 500 ), Vector2( 175.644, 500 ), Vector2( 840.513, 500 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "Walk" ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AnimatedSprite:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( -0.1, 6.7, 13.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -76,16 +36,13 @@ position = Vector2( 840.513, 500 )
 z_index = 4
 
 [node name="AnimatedSprite" parent="Enemy" index="1"]
-frame = 1
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy"]
-anims/Enemy-A-NW = ExtResource( 6 )
-anims/Enemy-A-Short = ExtResource( 7 )
-anims/Enemy-Asteroids = ExtResource( 6 )
-anims/Enemy-P-NW = ExtResource( 8 )
-anims/Enemy-P-Short = ExtResource( 9 )
-anims/Enemy-Pong = ExtResource( 8 )
-anims/Enemy-W = SubResource( 2 )
+anims/Enemy-A-Short = ExtResource( 6 )
+anims/Enemy-Asteroids = ExtResource( 7 )
+anims/Enemy-P-Short = ExtResource( 8 )
+anims/Enemy-Pong = ExtResource( 9 )
 
 [node name="WaitTimer" type="Timer" parent="."]
 wait_time = 2.0

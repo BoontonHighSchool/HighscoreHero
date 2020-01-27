@@ -2,7 +2,6 @@ extends Node2D
 
 var atAsteroids = false
 var atPong = false
-var anim_types = ["Enemy-Walk","Enemy-Asteroids","Enemy-Pong","Enemy-A-Short","Enemy-P-Short"]
 
 var A_High = 0
 var P_High = 0
@@ -14,6 +13,8 @@ var PlayAsteroids = false
 var StartPong = false
 var StartAsteroids = false
 
+var isPlaying = false
+
 
 func _ready():
 	randomize()
@@ -23,19 +24,29 @@ func _ready():
 
 func _process(delta):
 	if atAsteroids == true && Input.is_action_just_released("ui_select"):
-		SignalManager.emit_signal("OpenAsteroids")
+		if isPlaying == false:
+			SignalManager.emit_signal("OpenAsteroids")
+			isPlaying = true
 	if atPong == true && Input.is_action_just_released("ui_select"):
-		SignalManager.emit_signal("OpenPong")
+		if isPlaying == false:
+			SignalManager.emit_signal("OpenPong")
+			isPlaying = true
 
 
 	if P_Set == true:
-		Global.P_High += 1
-		SignalManager.emit_signal("Alert")
+		print("pset ", P_Set)
+		if atPong == false:
+			print("Pscore+1")
+			Global.P_High += 1
+			SignalManager.emit_signal("Alert")
 
 
 	if A_Set == true:
-		Global.A_High += 1
-		SignalManager.emit_signal("Alert")
+		print("aset ", A_Set)
+		if atAsteroids == false:
+			print("Ascore+1")
+			Global.A_High += 1
+			SignalManager.emit_signal("Alert")
 
 func _on_AsteroidsArcade_body_entered(body):
 	if body.is_in_group("Player"):
@@ -46,6 +57,7 @@ func _on_AsteroidsArcade_body_exited(body):
 	if body.is_in_group("Player"):
 		atAsteroids = false
 		SignalManager.emit_signal("LeftArcade")
+		isPlaying = false
 
 func _on_PongArcade_body_entered(body):
 	if body.is_in_group("Player"):
@@ -56,9 +68,10 @@ func _on_PongArcade_body_exited(body):
 	if body.is_in_group("Player"):
 		atPong = false
 		SignalManager.emit_signal("LeftArcade")
+		isPlaying = false
 
 func _on_WaitTimer_timeout():
-#	$Enemy/AnimationPlayer.play(anim_types[randi() % anim_types.size()])
+
 	play_random_animation($Enemy/AnimationPlayer)
 
 func play_random_animation(animation_player:AnimationPlayer):

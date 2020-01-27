@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Arcade_3.png" type="Texture" id=1]
+
+[node name="Arcades" type="Node"]
+
+[node name="Arcade_0" type="Sprite" parent="."]
+modulate = Color( 0.721569, 0.694118, 0.501961, 1 )
+position = Vector2( 295.757, 345 )
+scale = Vector2( 3, 3 )
+z_index = 2
+texture = ExtResource( 1 )
+
+[node name="Arcade_4" type="Sprite" parent="."]
+modulate = Color( 0.454902, 0.572549, 0.435294, 1 )
+position = Vector2( 578.905, 345 )
+scale = Vector2( 3, 3 )
+z_index = 2
+texture = ExtResource( 1 )
+
+[node name="Arcade_2" type="Sprite" parent="."]
+modulate = Color( 0.537255, 0.427451, 0.576471, 1 )
+position = Vector2( 435.17, 345 )
+scale = Vector2( 3, 3 )
+z_index = 2
+texture = ExtResource( 1 )
+
+[node name="Arcade_1" type="Sprite" parent="."]
+modulate = Color( 0.509804, 0.701961, 0.701961, 1 )
+position = Vector2( 341.18, 345 )
+scale = Vector2( 3, 3 )
+z_index = 2
+texture = ExtResource( 1 )
+
+[node name="Arcade_5" type="Sprite" parent="."]
+modulate = Color( 0.482353, 0.333333, 0.333333, 1 )
+position = Vector2( 624.329, 345 )
+scale = Vector2( 3, 3 )
+z_index = 2
+texture = ExtResource( 1 )
+
+[node name="Arcade_3" type="Sprite" parent="."]
+modulate = Color( 0.670588, 0.670588, 0.670588, 1 )
+position = Vector2( 530.847, 345 )
+scale = Vector2( 3, 3 )
+z_index = 2
+texture = ExtResource( 1 )

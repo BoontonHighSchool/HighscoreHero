@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Asteroids.gd" type="Script" id=1]
+[ext_resource path="res://A_Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/black.png" type="Texture" id=3]
+[ext_resource path="res://A_Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/ARCADECLASSIC.TTF" type="DynamicFontData" id=5]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 510.991, 17.7273, 0, 0, 0, 0, 510.991, 265.846 )
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.48383, 168.03 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 5 )
+
+[node name="Asteroids" type="Node2D"]
+script = ExtResource( 1 )
+Mob = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 512, 300 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 510.991, 17.7273 )
+rotation = 1.57078
+
+[node name="Boundry" type="StaticBody2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Boundry"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundry/Area2D"]
+polygon = PoolVector2Array( 509.814, -1.40997, -2.09697, 1.91412, -0.988937, 298.867, 510.922, 301.083, 516.463, 324.352, -30.9058, 327.676, -39.7701, -22.4626, 524.219, -25.7867 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Boundry"]
+polygon = PoolVector2Array( 509.814, -1.40997, -2.09697, 1.91412, -0.988937, 298.867, 510.922, 301.083, 516.463, 324.352, -30.9058, 327.676, -39.7701, -22.4626, 524.219, -25.7867 )
+
+[node name="A_Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 170.637, 136.288 )
+
+[node name="Score" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Score"]
+position = Vector2( 141.309, 149.27 )
+shape = SubResource( 2 )
+
+[node name="localScore" type="RichTextLabel" parent="."]
+margin_left = 14.0
+margin_top = 11.0
+margin_right = 137.0
+margin_bottom = 49.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "0"
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Boundry/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Score" to="." method="_on_Score_body_entered"]
